@@ -34,14 +34,14 @@ Feature: Login Feature
   	When User clicks login button in the navbar, display login page
   	And User enters blank username
   	And User enters password
-  	Then Error message is displayed to enter username and redirected to login page
+  	Then Error message is displayed and redirected to login page
   	
   Scenario: Login as blank password
   	Given User launches browser to the green kart url
   	When User clicks login button in the navbar, display login page
   	And User enters username
   	And User enters blank password
-  	Then Error message is displayed to enter password and redirected to login page
+  	Then Error message is displayed and redirected to login page
   	
   Scenario: Login in as nothing
   	Given User launches browser to the green kart url

@@ -27,7 +27,6 @@ public class Main {
 		// Pick a random vegetable, pick a random numberOfItems
 		Map<Integer, Vegetable> vegetableQuantityMap = new HashMap<Integer, Vegetable>();
 		
-		
 		for (int i = 0; i < 5; i++) {
 			int randomVegetable = (int) ((int) 30 * Math.random() + 1);
 			
@@ -49,7 +48,7 @@ public class Main {
 			vegetableQuantityMap.put(randomVegetable,  new Vegetable(vegetableName, price, randomQuantity));
 			
 			for (int j = 0; j < randomQuantity; j++) {
-				Thread.sleep(4000L);
+				Thread.sleep(5000L);
 				driver.findElement(By.xpath("//div[@class='container']//div[@class='product-card'][" + randomVegetable + "]//div[@class='card']//div[2]//button")).click();
 			}
 		}

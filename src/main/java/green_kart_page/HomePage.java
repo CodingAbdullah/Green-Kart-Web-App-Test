@@ -7,10 +7,13 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
 	
+	@FindBy(xpath="//div[@class='homepage']//div[@class='jumbo']//h1")
+	private WebElement homePageTitleElement;
+	
 	@FindBy(xpath="//nav//div[contains(@class, 'navbar-collapse')][1]//ul//li[1]")
 	private WebElement productPricingNavbarLinkElement;
 	
-	@FindBy(xpath="")
+	@FindBy(xpath="//div[@class='Navbar']//nav//div[2]//a")
 	private WebElement homePageNavbarLinkElement;
 	
 	@FindBy(xpath="//nav//div[contains(@class, 'navbar-collapse')][2]//ul//li[1]")
@@ -53,5 +56,9 @@ public class HomePage {
 	
 	public WebElement getHomePageNavbarElement() {
 		return this.homePageNavbarLinkElement;
+	}
+	
+	public WebElement getHomePageTitleElement() {
+		return this.homePageTitleElement;
 	}
 }

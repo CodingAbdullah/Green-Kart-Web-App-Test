@@ -7,6 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 	
+	@FindBy(xpath="//div[@class='login-form']//h4")
+	private WebElement loginLabel;
+	
 	@FindBy(xpath="//div[@class='login-form']//div//form//div[contains(@class, 'form-element')]//div[1]//div//input")
 	private WebElement username;
 	
@@ -42,5 +45,9 @@ public class LoginPage {
 	
 	public WebElement getLoginButtonElement() {
 		return this.loginButton;
+	}
+	
+	public WebElement getLoginLabelElement() {
+		return this.loginLabel;
 	}
 }

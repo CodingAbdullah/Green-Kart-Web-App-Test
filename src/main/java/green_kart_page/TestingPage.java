@@ -18,12 +18,12 @@ public class TestingPage {
 		
 		// login page
 		driver.get("http://localhost:3000/");
-	/*	driver.findElement(By.xpath("//div[@class='Navbar']//nav//div[3]//ul//li[1]")).click();
+		driver.findElement(By.xpath("//div[@class='Navbar']//nav//div[3]//ul//li[1]")).click();
 		loginPage = new LoginPage(driver); 
 	
 		loginPage.setUserNameElement("Hello World");
 		loginPage.setPasswordElement("123");
-		loginPage.clickLoginButtonElement(); */
+		loginPage.clickLoginButtonElement(); 
 		
 		
 		// sign up page

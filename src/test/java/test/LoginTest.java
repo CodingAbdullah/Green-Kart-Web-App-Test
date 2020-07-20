@@ -6,7 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Before;
+import io.cucumber.java.Before;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,14 +18,16 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.junit.Cucumber;
 
+@RunWith(Cucumber.class)
 public class LoginTest {
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private WebDriver driver;
+	 private LoginPage loginPage;
+	 private HomePage homePage;
+	 private WebDriver driver;
 	
-	@Before
-	public void init() throws InterruptedException {
+	 @Before
+	 public void start() throws InterruptedException {
 		System.setProperty("webdriver.chrome.driver", "//Users//fresh//Desktop//chromedriver");
 		driver = new ChromeDriver();
 
@@ -33,71 +36,65 @@ public class LoginTest {
 		
 		driver.get("http://localhost:3000");
 		homePage = new HomePage(driver);
-	}
+	 }
 	
-	@Given("Given User launches browser to the green kart url")
-	public void launchLoginPage() {
-		if (driver.getCurrentUrl().contains("http://localhost:3000")) {
+	 @Given("User launches browser to the green kart url")
+	 public void user_launches_browser_to_the_green_kart_url() throws Throwable {
+			
 			if (homePage.getHomePageTitleElement().getText().equals("Welcome to Green Kart")) {
 				assertTrue(true);
 			}
 			else {
 				assertFalse(true);
+			}	    
+	  }
+
+	  @When("User clicks login button in the navbar, display login page")
+	  public void user_clicks_login_button_in_the_navbar_display_login_page() throws Throwable {
+	    	driver.findElement(By.xpath("//div[@class='Navbar']//nav//div[3]//ul//li[1]")).click();
+			loginPage = new LoginPage(driver);
+			
+			if (loginPage.getLoginLabelElement().getText().equals("Login Form")) {
+				assertTrue(true);
 			}
-		}
-		else {
-			assertFalse(true);
-		}
-	}
-	    
-	@When("User clicks login button in the navbar, display login page")
-	public void displayLoginPage() {
-		driver.findElement(By.xpath("//div[@class='Navbar']//nav//div[3]//ul//li[1]")).click();
-		loginPage = new LoginPage(driver);
-		
-		if (loginPage.getLoginLabelElement().getText().equals("Login Form")) {
-			assertTrue(true);
-		}
-		else {
-			assertFalse(true);
-		}
-	}
-	 
-	@And("User enters valid username")
-	public void enterValidUsername() {
-		this.loginPage.setUserNameElement("Hello World");
-		assertEquals(this.loginPage.getUserNameInputElement().getText(), "Hello World");
-	}
-	
-	@And("User enters valid password")
-	public void enterValidPassword() {
-		this.loginPage.setPasswordElement("123");
-		assertEquals(this.loginPage.getPasswordInputElement().getText(), "123");
-	}
-	
-	@And("User enters invalid username ")
-	public void enterInvalidUsername() {
-		this.loginPage.setUserNameElement("Invalid");
-		assertEquals(this.loginPage.getUserNameInputElement().getText(), "Invalid");
-	}
-	
-	@And("User enters invalid password")
-	public void enterInvalidPassword() {
-		assertEquals(this.loginPage.getPasswordInputElement().getText(), "123456");
-	}
-	
-	@Then("Error message is displayed and redirected to login page")
-	public void displayErrorMessageRedirect() {
-		
-	}
-	
-	@Then("Then User clicks submit and error message is displayed to enter creds and redirected to login page")
-	public void displayErrorMessageBlankLogin() {
-		
-	}
-	
-	@Then("Success message is displayed along with the product pricing page")
-	public void displayProductPricingPage() {
-		
-	}
+			else {
+				assertFalse(true);
+			}	    
+	   }
+
+	   @Then("Success message is displayed along with product pricing page")
+	   public void success_message_is_displayed_along_with_product_pricing_page() throws Throwable {
+	    	String success = "success";
+			
+			assertEquals(success, "success");	    
+	   }
+
+	   @And("User enters valid username")
+	   public void user_enters_valid_username() throws Throwable {
+	    	driver.findElement(By.xpath("//div[@class='Navbar']//nav//div[3]//ul//li[1]")).click();
+			this.loginPage = new LoginPage(driver);
+			
+			this.loginPage.setUserNameElement("Hello World");
+			
+			if ((this.loginPage.getUserNameInputElement().getText()).equals("Hello World")) {
+				assertTrue(true);
+			}
+			else {
+				assertFalse(true);
+			}	    
+	   }
+
+	   @And("User enters valid password")
+	   public void user_enters_valid_password() throws Throwable {
+		   driver.findElement(By.xpath("//div[@class='Navbar']//nav//div[3]//ul//li[1]")).click();
+			this.loginPage = new LoginPage(driver);
+			this.loginPage.setPasswordElement("123");
+			
+			if ((this.loginPage.getPasswordInputElement().getText()).equals("123")) {
+				assertTrue(true);
+			}
+			else {
+				assertFalse(true);
+			}	   
+	   }
 }
